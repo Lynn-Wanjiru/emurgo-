@@ -7,6 +7,9 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import billingRoutes from "./routes/billingRoutes.js";
 import tokenRoutes from "./routes/tokenRoutes.js";
+import profileRoutes from "./routes/profileRoutes.js";
+import imageRoutes from "./routes/imageRoutes.js";
+import contactUsRoutes from "./routes/contactUsRoutes.js";
 
 dotenv.config();
 
@@ -22,9 +25,12 @@ app.use(cookieParser());
 connectDB();
 
 // Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/billing", billingRoutes);
-app.use("/api/mpesa", tokenRoutes); // Adjusted the route prefix for tokenRoutes
+app.use("/auth", authRoutes);
+app.use("/billing", billingRoutes);
+app.use("/mpesa", tokenRoutes);
+app.use("/profile", profileRoutes);
+app.use("/images", imageRoutes);
+app.use("/contact-us", contactUsRoutes);
 
 // Server Start
 app.listen(PORT, () =>

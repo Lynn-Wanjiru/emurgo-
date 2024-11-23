@@ -1,17 +1,17 @@
-import Login from "../models/login.js";
+import Register from "../models/register.js"; 
 
 // Login User
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Find the user by email
-    const user = await Login.findOne({ email });
+    // Find the user by email in the Register model
+    const user = await Register.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    // Check password
+    // Check if the password matches
     if (user.password !== password) {
       return res.status(400).json({ message: "Invalid password" });
     }
@@ -25,7 +25,7 @@ const loginUser = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "error", error });
+    res.status(500).json({ message: "Error", error });
   }
 };
 

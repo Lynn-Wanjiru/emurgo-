@@ -1,11 +1,10 @@
-// models/login.js
 import mongoose from "mongoose";
 
 const loginSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true, // Ensure no duplicate emails in the database
+    unique: true,
     trim: true,
   },
   password: {
@@ -14,6 +13,6 @@ const loginSchema = new mongoose.Schema({
   },
 });
 
-const login = mongoose.models.login || mongoose.model("login", loginSchema);
+const Login = mongoose.models.Login || mongoose.model("Login", loginSchema);
 
-export default login;
+export default Login;

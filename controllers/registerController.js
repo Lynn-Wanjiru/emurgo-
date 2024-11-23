@@ -1,4 +1,4 @@
-import Register from "../models/register.js"; // Adjust import if needed
+import Register from "../models/register.js";
 
 // Controller for registering a new user
 const registerUser = async (req, res) => {
@@ -27,14 +27,12 @@ const registerUser = async (req, res) => {
     // Check if email already exists
     const existingUser = await Register.findOne({ email });
     if (existingUser) {
-      return res
-        .status(400)
-        .json({
-          message: "Email already exists. Please use a different email.",
-        });
+      return res.status(400).json({
+        message: "Email already exists. Please use a different email.",
+      });
     }
 
-    // Additional logic if needed, like checking password match, etc.
+    // Check if passwords match
     if (password !== confirmPassword) {
       return res.status(400).json({ message: "Passwords do not match." });
     }
@@ -45,10 +43,10 @@ const registerUser = async (req, res) => {
       lastName,
       phoneNumber,
       email,
-      password,
-      confirmPassword,
+      password, // Store the password directly, ensure it is hashed before saving in production
     });
 
+    // Save the user to the database
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully" });
