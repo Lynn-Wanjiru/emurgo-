@@ -3,7 +3,8 @@ import {
   createProfile,
   getProfiles,
   getProfileByEmail,
-  updateProfile,
+  updateProfileField,
+  deleteProfile,
 } from "../controllers/profileController.js";
 
 const router = express.Router();
@@ -15,9 +16,12 @@ router.post("/", createProfile);
 router.get("/", getProfiles);
 
 // Get profile by email
-router.get("/email/:email", getProfileByEmail); 
+router.get("/email/:email", getProfileByEmail);
 
-// Update profile by email
-router.put("/email/:email", updateProfile); 
+// Update a specific field in the profile
+router.patch("/email/:email", updateProfileField); 
+
+// Delete profile by email
+router.delete("/email/:email", deleteProfile);
 
 export default router;
